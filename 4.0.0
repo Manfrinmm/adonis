@@ -1,0 +1,19 @@
+yarn add v1.19.1
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Saved 5 new dependencies.
+info Direct dependencies
+├─ eslint-config-standard@14.1.1
+├─ eslint-plugin-import@2.20.2
+├─ eslint-plugin-node@11.1.0
+├─ eslint-plugin-promise@4.2.1
+└─ eslint-plugin-standard@4.0.1
+info All dependencies
+├─ eslint-config-standard@14.1.1
+├─ eslint-plugin-import@2.20.2
+├─ eslint-plugin-node@11.1.0
+├─ eslint-plugin-promise@4.2.1
+└─ eslint-plugin-standard@4.0.1
+Done in 3.04s.
