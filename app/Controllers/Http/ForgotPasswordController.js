@@ -4,7 +4,8 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const User = use("App/models/User");
 
-const Mail = use("Mail");
+const Kue = use("Kue");
+const Job = use("App/Jobs/ForgotPasswordMail");
 
 const { randomBytes } = require("crypto");
 
@@ -28,17 +29,11 @@ class ForgotPasswordController {
 
     const linkToRedirect = `${redirectUrl}?token=${user.token}`;
 
-    await Mail.send(
-      ["emails.forgot_password", "emails.forgot_password-text"],
-      { email, token: user.token, link: linkToRedirect },
-      message => {
-        message
-          .to(user.email)
-          .from("oi@projetoadonis.com <Equipe AdonisJs>")
-          .subject("Recuperação de senha");
-      },
+    Kue.dispatch(
+      Job.key,
+      { email, user, linkToRedirect },
+      { attempts: 5, priority: "high" },
     );
-
     return user;
   }
 }
