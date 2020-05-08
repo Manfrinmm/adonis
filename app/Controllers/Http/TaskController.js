@@ -4,7 +4,7 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Task = use("App/models/Task");
+const Task = use("App/Models/Task");
 
 /**
  * Resourceful controller for interacting with tasks
@@ -92,9 +92,7 @@ class TaskController {
       "file_id",
     ]);
 
-    const task = await await Task.query()
-      .where({ id: params.id, project_id: params.projects_id })
-      .fetch();
+    const task = await Task.findOrFail(params.id);
 
     task.merge(data);
 
